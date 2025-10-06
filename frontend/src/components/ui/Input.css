@@ -1,0 +1,45 @@
+.form-group {
+  margin-bottom: var(--space-lg);
+}
+
+.form-label {
+  display: block;
+  margin-bottom: var(--space-sm);
+  font-weight: 600;
+  color: var(--gray-700);
+  font-size: 0.9375rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: var(--space-md);
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-family: var(--font-sans);
+  transition: all var(--transition-fast);
+  background: white;
+}
+
+.form-control:hover {
+  border-color: var(--gray-300);
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.form-hint {
+  font-size: 0.875rem;
+  color: var(--gray-500);
+  margin-top: var(--space-xs);
+}
+
+.form-error {
+  font-size: 0.875rem;
+  color: var(--danger);
+  margin-top: var(--space-xs);
+  font-weight: 500;
+}

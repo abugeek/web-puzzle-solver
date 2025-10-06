@@ -1,0 +1,25 @@
+.stat-card {
+  background: var(--primary-gradient);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  color: white;
+  text-align: center;
+  transition: transform var(--transition-fast);
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  opacity: 0.95;
+  margin-bottom: var(--space-xs);
+  font-weight: 500;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}

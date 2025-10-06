@@ -1,0 +1,50 @@
+.no-puzzles {
+  padding: var(--space-2xl);
+  text-align: center;
+  color: var(--gray-500);
+}
+
+.saved-list {
+  margin-top: var(--space-lg);
+}
+
+.saved-item {
+  background: var(--gray-50);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid var(--gray-200);
+  transition: all var(--transition-fast);
+}
+
+.saved-item:hover {
+  border-color: var(--primary-500);
+  box-shadow: var(--shadow-md);
+}
+
+.saved-info h4 {
+  color: var(--primary-600);
+  margin-bottom: var(--space-xs);
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.saved-info p {
+  color: var(--gray-600);
+  font-size: 0.875rem;
+  margin-bottom: var(--space-xs);
+  font-family: var(--font-mono);
+}
+
+.saved-info small {
+  color: var(--gray-500);
+  font-size: 0.8125rem;
+}
+
+.saved-actions {
+  display: flex;
+  gap: var(--space-sm);
+}
