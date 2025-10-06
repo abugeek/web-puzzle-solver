@@ -1,0 +1,74 @@
+{
+  "custom_20251006_231944": {
+    "id": "custom_20251006_231944",
+    "name": "moon",
+    "description": "moon",
+    "pattern": "+99899{prefix}2345",
+    "unknown_part": "prefix",
+    "unknown_length": 3,
+    "options": [
+      "010",
+      "112"
+    ],
+    "parts": {},
+    "checked": [],
+    "created_at": "2025-10-06T23:19:44.833403"
+  },
+  "custom_20251006_233315": {
+    "id": "custom_20251006_233315",
+    "name": "Find Missing Phone Digits",
+    "description": "",
+    "pattern": "+99897{unknown}6333",
+    "unknown_part": "unknown",
+    "unknown_length": 2,
+    "options": [
+      "90",
+      "91",
+      "92",
+      "93",
+      "94",
+      "95",
+      "96",
+      "97",
+      "98",
+      "99"
+    ],
+    "parts": {},
+    "checked": [],
+    "created_at": "2025-10-06T23:33:15.989373"
+  },
+  "custom_20251006_235257": {
+    "id": "custom_20251006_235257",
+    "name": "dsgfdr",
+    "description": "",
+    "pattern": "+994{U1}{U2}45{U3}",
+    "unknowns": [
+      {
+        "id": "U1",
+        "label": "Unknown 1",
+        "options": [
+          "92",
+          "99"
+        ]
+      },
+      {
+        "id": "U2",
+        "label": "Unknown 2",
+        "options": [
+          "934",
+          "945"
+        ]
+      },
+      {
+        "id": "U3",
+        "label": "Unknown 3",
+        "options": [
+          "54",
+          "65"
+        ]
+      }
+    ],
+    "checked": [],
+    "created_at": "2025-10-06T23:52:57.510569"
+  }
+}

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📱 Universal Pattern Puzzle Solver</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>📱 Universal Phone Puzzle Solver</h1>
+            <p style="font-size: 1.2em; color: #666; margin-top: 10px;">
+                Create custom puzzles or use presets. Find missing digits with optimal probability strategy.
+            </p>
+
+            <div class="puzzle-controls">
+                <button class="btn btn-primary" id="solveTabBtn">🎯 Solve Puzzle</button>
+                <button class="btn btn-success" id="createTabBtn">➕ Create Custom</button>
+                <button class="btn btn-info" id="presetsTabBtn">📋 Load Preset</button>
+                <button class="btn btn-warning" id="savedTabBtn">💾 My Puzzles</button>
+            </div>
+
+            <!-- Current Puzzle Display -->
+            <div class="alert alert-info" style="margin-top: 20px;">
+                <strong>Current Puzzle:</strong> <span id="currentPuzzleName">Loading...</span><br>
+                <strong>Pattern:</strong> <span id="currentPuzzlePattern" style="font-family: 'Courier New', monospace;">Loading...</span>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar" style="width: 0%">0% Checked</div>
+            </div>
+        </div>
+
+        <!-- Tab: Solve Puzzle -->
+        <div id="tabSolve" class="tab-content active">
+            <div class="main-grid">
+                <!-- Statistics Card -->
+                <div class="card">
+                    <h2><span>📊</span> Probability Analysis</h2>
+
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-label">Total Options</div>
+                            <div class="stat-value" id="totalCount">0</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">Remaining</div>
+                            <div class="stat-value" id="remainingCount">0</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">Next Try</div>
+                            <div class="stat-value" id="probNext">0%</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">Within 5 Tries</div>
+                            <div class="stat-value" id="probWithin5">0%</div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info" style="margin-top: 20px;">
+                        <strong>Expected Attempts:</strong> <span id="expectedAttempts">0</span> tries (average)
+                    </div>
+
+                    <div class="button-group">
+                        <button class="btn btn-danger" id="resetProgressBtn">🔄 Reset Progress</button>
+                        <button class="btn btn-info" id="exportDataBtn">💾 Export Results</button>
+                    </div>
+                </div>
+
+                <!-- Strategy Card -->
+                <div class="card">
+                    <h2><span>🎯</span> Optimal Strategy</h2>
+
+                    <div class="alert alert-success">
+                        Try these numbers first for highest efficiency!
+                    </div>
+
+                    <div class="recommended-numbers" id="recommendedNumbers">
+                        <div class="loading">Loading strategy...</div>
+                    </div>
+
+                    <div class="button-group">
+                        <button class="btn btn-primary" id="refreshStrategyBtn">🔄 Refresh Strategy</button>
+                        <button class="btn btn-success" id="toggleCombinationsBtn">📋 Show All Numbers</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- All Combinations Card -->
+            <div class="card full-width" id="combinationsCard" style="display: none;">
+                <h2><span>📞</span> All Possible Numbers</h2>
+                <p style="color: #666; margin-bottom: 15px;">Click any number to mark as checked/unchecked</p>
+
+                <div class="phone-grid" id="phoneGrid">
+                    <div class="loading">Loading combinations...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Create Custom Puzzle -->
+        <div id="tabCreate" class="tab-content">
+            <div class="card">
+                <h2><span>➕</span> Create Your Puzzle - Simple & Easy!</h2>
+
+                <!-- Step Indicator -->
+                <div class="step-indicator">
+                    <div class="step active" id="step1">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Name</div>
+                    </div>
+                    <div class="step" id="step2">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Build Pattern</div>
+                    </div>
+                    <div class="step" id="step3">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Add Options</div>
+                    </div>
+                </div>
+
+                <form id="createPuzzleForm">
+                    <!-- Step 1: Name -->
+                    <div class="form-group">
+                        <label>📝 Give your puzzle a name</label>
+                        <input type="text" class="form-control" id="puzzleName" required
+                               placeholder="e.g., Find My Friend's Number">
+                        <div class="form-hint">This helps you remember what this puzzle is for</div>
+                    </div>
+
+                    <!-- Step 2: Pattern Builder -->
+                    <div class="form-group">
+                        <label>🎨 Build Your Phone Number Pattern</label>
+                        <div class="form-hint" style="margin-bottom: 15px;">
+                            Click buttons below to build your pattern piece by piece
+                        </div>
+
+                        <div class="pattern-builder">
+                            <div class="pattern-parts" id="patternParts">
+                                <div class="pattern-part" style="opacity: 0.5;">
+                                    Start building your pattern →
+                                </div>
+                            </div>
+
+                            <div class="add-part-buttons">
+                                <button type="button" class="btn btn-primary btn-small" id="addTextPartBtn">
+                                    ➕ Add Text (e.g., +998)
+                                </button>
+                                <button type="button" class="btn btn-warning btn-small" id="addUnknownPartBtn">
+                                    ❓ Add Unknown Part
+                                </button>
+                                <button type="button" class="btn btn-danger btn-small" id="clearPatternBtn">
+                                    🗑️ Clear All
+                                </button>
+                            </div>
+
+                            <div class="pattern-preview">
+                                <div class="pattern-preview-label">Preview:</div>
+                                <div class="pattern-preview-text" id="patternPreview">-</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Options Generator -->
+                    <div class="form-group">
+                        <label>🔢 What are the possible values for the unknown part?</label>
+                        <div class="form-hint" style="margin-bottom: 15px;">
+                            Choose how to generate the list of options to try
+                        </div>
+
+                        <div class="options-generator">
+                            <div class="generator-tabs">
+                                <div class="generator-tab active" id="genRangeTab">
+                                    📊 Number Range
+                                </div>
+                                <div class="generator-tab" id="genListTab">
+                                    📝 Custom List
+                                </div>
+                                <div class="generator-tab" id="genUploadTab">
+                                    📄 Paste List
+                                </div>
+                            </div>
+
+                            <!-- Range Generator -->
+                            <div class="generator-content active" id="genRange">
+                                <div class="range-inputs">
+                                    <div>
+                                        <label>From:</label>
+                                        <input type="number" class="form-control" id="rangeFrom"
+                                               value="100">
+                                    </div>
+                                    <div>
+                                        <label>To:</label>
+                                        <input type="number" class="form-control" id="rangeTo"
+                                               value="200">
+                                    </div>
+                                </div>
+                                <div style="margin-top: 15px;">
+                                    <label>
+                                        <input type="checkbox" id="rangePad">
+                                        Pad with zeros (e.g., 001, 002, 003)
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- List Generator -->
+                            <div class="generator-content" id="genList">
+                                <div class="form-hint">Enter each value separated by comma</div>
+                                <input type="text" class="form-control" id="listValues"
+                                       placeholder="e.g., 010, 112, 113, 342, 345">
+                            </div>
+
+                            <!-- Upload Generator -->
+                            <div class="generator-content" id="genUpload">
+                                <div class="form-hint">Paste your list (one per line)</div>
+                                <textarea class="form-control" id="uploadValues"
+                                          rows="8" placeholder="010&#10;112&#10;113&#10;342&#10;345"></textarea>
+                            </div>
+
+                            <!-- Options Preview -->
+                            <div class="options-preview">
+                                <div class="options-count" id="optionsCount">0 options</div>
+                                <div class="options-list" id="optionsPreview">
+                                    <div style="color: #6c757d;">Options will appear here...</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit -->
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-success" id="createBtn">
+                            ✅ Create Puzzle & Start Solving
+                        </button>
+                        <button type="button" class="btn btn-info" id="showExampleBtn">
+                            💡 Show Me an Example
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Tab: Presets -->
+        <div id="tabPresets" class="tab-content">
+            <div class="card">
+                <h2><span>📋</span> Preset Puzzles</h2>
+                <p style="color: #666; margin-bottom: 15px;">Choose from pre-configured puzzle templates</p>
+
+                <div class="presets-grid" id="presetsGrid">
+                    <div class="loading">Loading presets...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Saved Puzzles -->
+        <div id="tabSaved" class="tab-content">
+            <div class="card">
+                <h2><span>💾</span> My Saved Puzzles</h2>
+                <p style="color: #666; margin-bottom: 15px;">Your custom puzzles are saved automatically</p>
+
+                <div id="savedPuzzlesList">
+                    <div class="loading">Loading saved puzzles...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

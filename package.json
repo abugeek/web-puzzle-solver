@@ -1,0 +1,13 @@
+{
+  "name": "web-puzzle-solver",
+  "version": "1.0.0",
+  "description": "A powerful, flexible web application that helps you solve phone number puzzles using probability theory and optimal guessing strategies. Create custom puzzles or use presets for any phone number pattern!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

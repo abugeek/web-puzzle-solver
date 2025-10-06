@@ -1,0 +1,8 @@
+# Flask web framework
+Flask==3.0.0
+
+# CORS support
+flask-cors==4.0.0
+
+# Color output (for server logs)
+colorama==0.4.6
