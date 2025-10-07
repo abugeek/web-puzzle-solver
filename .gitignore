@@ -22,7 +22,6 @@ yarn-error.log*
 # Frontend build
 frontend/dist/
 frontend/build/
-public/
 
 # IDE
 .vscode/
