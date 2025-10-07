@@ -1,5 +1,5 @@
 /**
- * Russian translations
+ * Russian translations - Complete / Русские переводы - Полные
  */
 import type { Translation } from './en';
 
@@ -14,13 +14,17 @@ export const ru: Translation = {
     edit: 'Редактировать',
     create: 'Создать',
     load: 'Загрузить',
+    close: 'Закрыть',
+    back: 'Назад',
+    next: 'Далее',
+    yes: 'Да',
+    no: 'Нет',
+    confirm: 'Подтвердить',
   },
 
   header: {
     title: 'Универсальный Решатель Паттернов',
-    subtitle: 'Создавайте собственные головоломки или используйте готовые шаблоны. Находите недостающие цифры с оптимальной вероятностной стратегией.',
-    currentPuzzle: 'Текущая Головоломка',
-    pattern: 'Паттерн',
+    subtitle: 'Создавайте собственные головоломки или используйте готовые шаблоны',
   },
 
   tabs: {
@@ -31,88 +35,108 @@ export const ru: Translation = {
   },
 
   solver: {
+    // Раздел Анализа Вероятности
     probabilityAnalysis: 'Анализ Вероятности',
     totalOptions: 'Всего Вариантов',
     remaining: 'Осталось',
     checked: 'Проверено',
-    probabilityNext: 'Следующая Попытка',
-    probabilityWithin: 'В течение',
-    tries: 'попыток',
-    expectedAttempts: 'Ожидаемые Попытки',
-    bestCase: 'Лучший Случай',
-    worstCase: 'Худший Случай',
+    nextTry: 'Следующая Попытка %',
 
+    // Детали Вероятности
+    within3Tries: 'В течение 3 попыток:',
+    within5Tries: 'В течение 5 попыток:',
+    within10Tries: 'В течение 10 попыток:',
+    expectedAttempts: 'Ожидаемые Попытки:',
+    triesAverage: 'попыток (в среднем)',
+
+    // Раздел Стратегии
     optimalStrategy: 'Оптимальная Стратегия',
+    strategyInfo: 'Попробуйте эти номера первыми для максимальной эффективности!',
     priority: 'Приоритет',
-    refreshStrategy: 'Обновить Стратегию',
-    resetProgress: 'Сбросить Прогресс',
-    showAllCombinations: 'Показать Все Комбинации',
-    hideAllCombinations: 'Скрыть Комбинации',
+    clickHint: 'Нажмите, чтобы отметить как проверенное →',
+    noStrategy: 'Стратегия недоступна',
+    allChecked: 'Все комбинации проверены!',
 
-    available: 'Доступно',
-    alreadyChecked: 'Уже Проверено',
-    exportResults: 'Экспортировать Результаты',
+    // Кнопки
+    resetProgress: 'Сбросить Прогресс',
+    refreshStrategy: 'Обновить Стратегию',
+    showAllNumbers: 'Показать Все Номера',
+
+    // Раздел Всех Комбинаций
+    allPossibleNumbers: 'Все Возможные Номера',
+    combinationsHint: 'Нажмите на любой номер, чтобы переключить проверено/не проверено',
+    availableStatus: 'Доступно',
+    checkedStatus: 'Проверено',
   },
 
   creator: {
+    // Заголовки
     title: 'Создать Свою Головоломку',
     editTitle: 'Редактировать Головоломку',
-    editing: 'Редактирование',
-    cancelEditing: 'Отменить редактирование',
+    subtitle: 'Создайте собственную головоломку с неизвестными',
 
+    // Поля Формы
     puzzleName: 'Название Головоломки',
-    puzzleNamePlaceholder: 'например, Найти Номер Друга',
-    puzzleNameHint: 'Дайте головоломке запоминающееся название',
+    puzzleNamePlaceholder: 'Введите название головоломки',
+    description: 'Описание',
+    descriptionPlaceholder: 'Необязательное описание',
 
-    description: 'Описание (необязательно)',
-    descriptionPlaceholder: 'например, Поиск недостающих цифр в номере телефона',
-
-    buildPattern: 'Построить Паттерн',
-    buildPatternHint: 'Создайте паттерн, добавляя текст и неизвестные части',
-    startBuilding: 'Начните строить паттерн →',
-
+    // Конструктор Паттернов
+    patternBuilder: 'Конструктор Паттернов',
+    patternBuilderHint: 'Создайте свой паттерн, используя текст и неизвестные',
     addText: 'Добавить Текст',
     addUnknown: 'Добавить Неизвестное',
     clearAll: 'Очистить Всё',
+    preview: 'Просмотр',
+    noPattern: 'Паттерн ещё не создан',
 
-    preview: 'Предпросмотр',
+    // Генератор Вариантов
+    optionsGenerator: 'Генератор Вариантов',
+    rangeTab: 'Диапазон',
+    listTab: 'Список',
+    pasteTab: 'Вставить',
 
-    addOptionsFor: 'Добавить Варианты для',
-    generateOptions: 'Создайте список возможных значений для этой неизвестной части',
+    // Генератор Диапазона
+    from: 'От:',
+    to: 'До:',
+    zeroPad: 'Заполнить нулями (например, 001, 002)',
+    generateRange: 'Создать Диапазон',
 
-    numberRange: 'Диапазон Чисел',
-    customList: 'Свой Список',
-    pasteList: 'Вставить Список',
+    // Генератор Списка
+    listLabel: 'Список',
+    listPlaceholder: 'Введите значения через запятую (например, 123, 456, 789)',
+    addList: 'Добавить Список',
 
-    from: 'От',
-    to: 'До',
-    padWithZeros: 'Дополнить нулями (например, 001, 002, 003)',
+    // Генератор Вставки
+    pasteLabel: 'Вставить',
+    pastePlaceholder: 'Вставьте несколько значений (каждое на отдельной строке)',
+    addPasted: 'Добавить Вставленные',
 
-    enterValuesComma: 'Введите значения через запятую',
-    pasteListHint: 'Вставьте список (одно значение на строку)',
-
-    optionsCount: 'вариантов',
-    optionsPreview: 'Варианты появятся здесь...',
-    applyOptions: 'Применить Варианты к',
-
-    currentlyApplied: 'Текущие Применённые Варианты',
-
-    createPuzzle: 'Создать Головоломку и Начать Решение',
-    saveChanges: 'Сохранить Изменения',
-
+    // Конфигурация Неизвестного
+    unknownConfig: 'Конфигурация Неизвестного',
+    selectUnknown: 'Выберите неизвестное для настройки его вариантов',
+    currentOptions: 'Текущие Варианты',
+    optionsCount: (count: number) => `${count} вариантов`,
+    noOptions: 'Пока нет вариантов',
+    clearOptions: 'Очистить Варианты',
     unknown: 'Неизвестное',
+
+    // Кнопки
+    savePuzzle: 'Сохранить Головоломку',
+    updatePuzzle: 'Обновить Головоломку',
+    cancelEdit: 'Отменить Редактирование',
   },
 
   presets: {
     title: 'Загрузить Готовую Головоломку',
-    subtitle: 'Выберите из готовых шаблонов головоломок',
+    subtitle: 'Выберите из готовых головоломок для быстрого старта',
     unknowns: 'неизвестных',
   },
 
   saved: {
-    title: 'Мои Сохранённые Головоломки',
-    subtitle: 'Ваши головоломки сохраняются автоматически',
-    noPuzzles: 'Пока нет сохранённых головоломок!',
+    title: 'Мои Сохраненные Головоломки',
+    subtitle: 'Загружайте, редактируйте или удаляйте свои головоломки',
+    noPuzzles: 'Пока нет сохранённых головоломок. Создайте одну в разделе "Создать Свою"!',
     created: 'Создано',
   },
 
@@ -121,25 +145,35 @@ export const ru: Translation = {
       puzzleCreated: (name: string) => `✅ Головоломка создана: ${name}`,
       puzzleUpdated: (name: string) => `✅ Головоломка обновлена: ${name}`,
       puzzleLoaded: (name: string) => `✅ Загружено: ${name}`,
-      puzzleDeleted: '✅ Удалено',
-      optionsApplied: (count: number, label: string) => `✅ Добавлено ${count} вариантов в ${label}`,
+      puzzleDeleted: '✅ Головоломка успешно удалена',
+      optionsGenerated: (count: number) => `Создано ${count} вариантов`,
+      optionsApplied: (count: number, label: string) => `✅ Добавлено ${count} вариантов для ${label}`,
     },
     error: {
       puzzleNameRequired: 'Пожалуйста, введите название головоломки!',
-      patternRequired: 'Пожалуйста, постройте паттерн!',
-      unknownRequired: 'Пожалуйста, добавьте хотя бы одну неизвестную часть!',
-      optionsRequired: (label: string) => `Пожалуйста, добавьте варианты для ${label}!`,
-      selectUnknown: 'Пожалуйста, сначала выберите неизвестную часть!',
+      patternRequired: 'Пожалуйста, сначала создайте паттерн!',
+      unknownsRequired: 'Пожалуйста, добавьте хотя бы одно неизвестное с вариантами!',
+      allUnknownsNeedOptions: 'Все неизвестные должны иметь варианты!',
+      invalidRange: 'Неверный диапазон! "От" должно быть меньше "До"',
+      noListValues: 'Пожалуйста, введите значения через запятую',
+      noPasteValues: 'Пожалуйста, вставьте значения (каждое на отдельной строке)',
+      selectUnknownFirst: 'Пожалуйста, сначала выберите неизвестную часть!',
       noOptionsGenerated: 'Варианты не созданы!',
-      createFailed: 'Не удалось создать головоломку. Проверьте консоль.',
-      updateFailed: 'Не удалось обновить головоломку. Проверьте консоль.',
+      createFailed: 'Не удалось создать головоломку',
+      updateFailed: 'Не удалось обновить головоломку',
     },
     confirm: {
+      resetProgress: 'Сбросить весь прогресс? Это снимет отметки со всех комбинаций.',
+      deletePuzzle: 'Удалить эту головоломку? Это действие нельзя отменить.',
+      cancelEdit: 'Отменить редактирование? Несохранённые изменения будут потеряны.',
       clearPattern: 'Очистить весь паттерн?',
-      deletePuzzle: 'Удалить эту головоломку?',
     },
     prompt: {
-      enterText: 'Введите текст (например, +998):',
+      enterText: 'Введите текст (например, +7):',
+    },
+    info: {
+      selectUnknown: 'Нажмите на неизвестное в паттерне, чтобы настроить его',
+      previewShowing: (count: number) => `Показаны первые ${count} вариантов`,
     },
   },
 };
