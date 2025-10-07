@@ -75,8 +75,8 @@ function App() {
           {/* Current Puzzle Info */}
           {currentPuzzle && (
             <div className="current-puzzle-info">
-              <strong>{t.header.currentPuzzle}:</strong> {currentPuzzle.name}<br />
-              <strong>{t.header.pattern}:</strong> <code>{currentPuzzle.pattern}</code>
+              <strong>Current Puzzle:</strong> {currentPuzzle.name}<br />
+              <strong>Pattern:</strong> <code>{currentPuzzle.pattern}</code>
             </div>
           )}
         </header>
